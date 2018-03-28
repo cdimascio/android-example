@@ -10,21 +10,18 @@ import io.github.cdimascio.dotenv.dotenv
 val dotenv = dotenv {
     directory = "/assets"
     filename = "env" // use filename env, instead of .env
-}
-
-// Uri.parse("android.resource://com.example.dimascio.myapp/raw").toString()
+} // <---- Configure dotenv
 
 
-const val EXTRA_MESSAGE = "com.example.dimascio.myapp.MESSAGE"
+val EXTRA_MESSAGE = "com.example.dimascio.myapp.MESSAGE"
 class MainActivity : AppCompatActivity() {
 
-    private val ev = dotenv["MY_EV"]
+    private val ev = dotenv["MY_EV"] // <---- Get value from dotenv
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<EditText>(R.id.editText).apply {
-            println("=============== $ev")
-            hint = "$text $ev"
+            hint = "$ev" // <--- Use dotenv value for hint (not a good idea :-D)
         }
     }
 
